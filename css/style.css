@@ -1,0 +1,44 @@
+body{
+  background-color: rgb(0, 0, 0);
+}
+
+canvas {
+	position: absolute;
+	left: 40%;
+	top: 50%;
+	margin-left: -300px;
+	margin-top: -205px;
+  background-color: rgb(255, 255, 255);
+}
+
+.toolsBar{
+  position: absolute;
+  border-style: solid;
+  border-width:thin;
+  border-color: rgb(155,155,155);
+  margin-left: 17.5%;
+  width: 65.5%;
+  background-color: rgb(200,200,155);
+}
+
+.toolIcon{
+  position: relative;
+  width: 70px;
+  height: 70px;
+  margin-right: 5%;
+  margin-left: 10%;
+}
+
+.tools1{
+  position: relative;
+  width: 50%;
+  border-right-style: dotted;
+  border-right-width: 2px;
+  display: inline-block;
+}
+
+.tools2{
+  position: absolute;
+  width: 50%;
+  display: inline-block;
+}
