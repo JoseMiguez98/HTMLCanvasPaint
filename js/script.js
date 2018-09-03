@@ -32,14 +32,6 @@ function backgroundColor(imageData,r,g,b){
   }
 }
 
-// function getXY(canvas, event){
-//   let rect = canvas.getBoundingClientRect();
-//   return{
-//     x: (event.clientX - rect.left)/canvas.width,
-//     y: (event.clientY - rect.top)/canvas.height
-//   }
-// }
-
 $( document ).ready(function() {
   let canvas = $('#canvas');
   let ctx = $(canvas)[0].getContext("2d");
