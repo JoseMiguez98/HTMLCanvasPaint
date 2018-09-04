@@ -35,20 +35,41 @@ function backgroundColor(imageData,r,g,b){
 $( document ).ready(function() {
   let canvas = $('#canvas');
   let ctx = $(canvas)[0].getContext("2d");
-  let imageData = ctx.createImageData($(canvas).attr("width"), $(canvas).attr("height"));
+  // let imageData = ctx.createImageData($(canvas).attr("width"), $(canvas).attr("height"));
   let mouseX = 0;
   let mouseY = 0;
   let paint_mode = false;
   let color = {r:0,g:0,b:0};
   let lastX = null;
   let lastY = null;
-  ctx.putImageData(imageData,0,0);
+  let cursor = null;
+  //Almaceno las coordenadas de los cursores personalizados
+  let coordinates = {
+    "pencil" :{"x":-1, "y":27},
+    "eraser" :{"x":0, "y":7 }
+  }
 
+  $(".toolIcon").on("click",function(){
+    //Herramienta seleccionada
+    let tool = $(this).data("target");
+    //Coordenadas de la herramienta
+    let x = coordinates[tool].x;
+    let y = coordinates[tool].y;
+    //Construyo el value css con los datos obtenidos
+    cursor = "url('img/cursors/"+tool+".png')"+x+" "+y+", default";
+  });
+
+  $(canvas).hover(function(){
+    $(this).css("cursor", cursor);
+  });
+
+  //Función ejecutada mientras el mouse esta clickeado sobre el canvas
   $(canvas).on("mousedown", function(event){
     //Cuando se clickea el canvas se activa el modo dibujo
     paint_mode = true;
   });
 
+  //Función ejecutada cuando el click es soltado sobre el canvas
   $(canvas).on("mouseup", function(){
     //Cuando se suelta el mouse se desactiva el modo dibujo
     paint_mode = false;
@@ -56,11 +77,12 @@ $( document ).ready(function() {
     lastY = null;
   });
 
+  //Función ejecutada cuando el mouse deja el canvas
   $(canvas).on("mouseleave",function(){
     lastX = null;
     lastY = null;
   });
-
+  //Función ejecutada cuando el mouse se mueve sobre el canvas
   $(canvas).on("mousemove",function(event){
     //Si esta activado el modo dibujo
     if(paint_mode){

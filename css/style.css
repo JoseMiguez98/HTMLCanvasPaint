@@ -3,14 +3,17 @@ body{
 }
 
 canvas {
-	position: absolute;
-	left: 40%;
-	top: 50%;
-	margin-left: -300px;
-	margin-top: -205px;
+  position: absolute;
+  left: 40%;
+  top: 50%;
+  margin-left: -300px;
+  margin-top: -200px;
   background-color: rgb(255, 255, 255);
 }
 
+canvas:hover{
+  cursor: url('../img/cursors/pencil.png')-1 27, default;
+}
 .toolsBar{
   position: absolute;
   border-style: solid;
@@ -22,7 +25,7 @@ canvas {
   background-color: rgb(200,200,155);
 }
 
-.toolIcon{
+.fileIcon, .toolIcon{
   position: relative;
   width: 50px;
   height: 50px;
@@ -31,7 +34,7 @@ canvas {
   margin-top: 0.5%;
 }
 
-.toolIcon:hover {
+.fileIcon:hover, .toolIcon:hover {
   border-style: solid;
   border-width: 1px;
   border-radius: 10%;
