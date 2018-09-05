@@ -4,26 +4,37 @@
   <meta charset="utf-8">
   <title>Paint-Canvas</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/ui-darkness/jquery-ui.css">
   <!-- Latest compiled and minified CSS -->
 </head>
 <body>
+  <div id="dialog-confim">
+
+  </div>
   <div class="toolsBar">
     <div class="tools1">
       <!--Aqui van los iconos del guardar, importar y nuevo archivo-->
-      <img class="fileIcon" src="img/save.png">
-      <img class="fileIcon" src="img/import.png">
-      <img class="fileIcon" src="img/new-file.png">
+      <img class="fileIcon" value="0" src="img/save.png">
+      <img class="fileIcon" value="1" src="img/import.png">
+      <img class="fileIcon" value="2" src="img/new-file.png">
     </div>
     <div class="tools2">
       <!--Aqui van los iconos del lapiz y la goma-->
-      <img class="toolIcon" data-target="pencil" src="img/pencil.png">
-      <img class="toolIcon" data-target="eraser" src="img/eraser.png">
+      <img class="toolIcon" data-target="pencil" value=0  src="img/pencil.png">
+      <img class="toolIcon" data-target="eraser" value=1 src="img/eraser.png">
     </div>
   </div>
   <canvas id="canvas" width="900" height="400"></canvas>
+  <div id="confirmDialog" title="Guardar cambios?">
+    <p>Desea conservar los cambios?</p>
+  </div>
   <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
   crossorigin="anonymous"></script>
   <script src="js/script.js"></script>
 </body>

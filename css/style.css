@@ -8,12 +8,12 @@ canvas {
   top: 50%;
   margin-left: -300px;
   margin-top: -200px;
-  background-color: rgb(255, 255, 255);
 }
 
 canvas:hover{
   cursor: url('../img/cursors/pencil.png')-1 27, default;
 }
+
 .toolsBar{
   position: absolute;
   border-style: solid;
@@ -54,3 +54,8 @@ canvas:hover{
   width: 50%;
   display: inline-block;
 }
+
+/*#confirmDialog{
+  float:left;
+  margin-left: 60%;
+}*/
