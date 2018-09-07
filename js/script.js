@@ -99,6 +99,17 @@ $( document ).ready(function() {
           setPixel(imageData,x,y,value,value,value,255);
         }
       }
+    },
+    //Filtro sepia
+    function sepiaFilter(imageData){
+      for(let x = 0; x<imageData.width ; x++){
+        for(let y = 0 ; y<imageData.height ; y++){
+          let r = getRed(imageData,x,y)*0.393+getGreen(imageData,x,y)*0.769+getBlue(imageData,x,y)*0.189;
+          let g = getRed(imageData,x,y)*0.349+getGreen(imageData,x,y)*0.686+getBlue(imageData,x,y)*0.168;
+          let b = getRed(imageData,x,y)*0.272+getGreen(imageData,x,y)*0.534+getBlue(imageData,x,y)*0.131;
+          setPixel(imageData,x,y,r,g,b,255);
+        }
+      }
     }
   ]
 
@@ -176,6 +187,7 @@ $( document ).ready(function() {
             //Guardo la imagen
             Conservar: function() {
               saveFile(canvas);
+              newFile(imageData,ctx);
               $(this).dialog("close");
             },
             //Descarto la imagen
