@@ -36,10 +36,11 @@ function backgroundColor(imageData,r,g,b){
 function saveFile(canvas){
   let link = document.createElement('a');
   let img = canvas[0].toDataURL("image/png;base64;");
-  link.href = img;
-  link.download = "MiDibujo.png";
-  console.log(link.href);
+  $(link).attr("href", img);
+  $(link).attr("download", "MiDibujo.png");
+  document.body.appendChild(link);
   link.click();
+  document.body.removeChild(link);
 }
 
 //Nuevo lienzo en blanco
