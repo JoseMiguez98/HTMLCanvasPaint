@@ -38,6 +38,7 @@ function saveFile(canvas){
   let img = canvas[0].toDataURL("image/png;base64;");
   link.href = img;
   link.download = "MiDibujo.png";
+  console.log(link.href);
   link.click();
 }
 
@@ -64,6 +65,41 @@ $( document ).ready(function() {
     "pencil" :{"x":-1, "y":27},
     "eraser" :{"x":0, "y":7 }
   }
+  //Array que contiene los filtros
+  let filters = [
+    //Filtro blanco y negro
+    function grayScaleFilter(imageData){
+      for(let x = 0; x<imageData.width ;x++){
+        for(let y = 0; y<imageData.height;y++){
+          let greyValue = (getRed(imageData,x,y)+getGreen(imageData,x,y)+getBlue(imageData,x,y))/3;
+          setPixel(imageData,x,y,greyValue,greyValue,greyValue,255);
+        }
+      }
+    },
+    //Filtro que aumenta el brillo
+    function brightnessFilter(imageData){
+      for(let x = 0; x<imageData.width ;x++){
+        for(let y = 0; y<imageData.height;y++){
+          let greyValue = (getRed(imageData,x,y)+getGreen(imageData,x,y)+getBlue(imageData,x,y))/3;
+          setPixel(imageData,x,y,getRed(imageData,x,y)+100,getGreen(imageData,x,y)+100,getBlue(imageData,x,y)+100,255);
+        }
+      }
+    },
+    //Filtro binarización
+    function binaryFilter(imageData){
+      filters[0](imageData);
+      let umbral = 127;
+      for(let x = 0; x<imageData.width ;x++){
+        for(let y = 0; y<imageData.height;y++){
+          let value = 0;
+          if(getRed(imageData,x,y) >= umbral){
+            value = 255;
+          }
+          setPixel(imageData,x,y,value,value,value,255);
+        }
+      }
+    }
+  ]
 
   newFile(imageData, ctx);
 
@@ -113,7 +149,15 @@ $( document ).ready(function() {
             let img = new Image();
             img.src = event.target.result;
             img.onload = function(){
-              ctx.drawImage(img,0,0,$(canvas).width(),$(canvas).height());
+              //Si el tamaño de la imagen es mayor al del canvas
+              //La resizeo
+              if(img.width>$(canvas).width() && img.height>$(canvas).height()){
+                ctx.drawImage(img,0,0,$(canvas).width(),$(canvas).height());
+              }
+              //Si no la importo con su tamaño original
+              else{
+                ctx.drawImage(img,0,0);
+              }
             }
           }
         }
@@ -144,6 +188,7 @@ $( document ).ready(function() {
     }
   });
 
+  //Función ejecutada al pasar el mouse sobre el canvas
   $(canvas).hover(function(){
     $(this).css("cursor", cursor);
   });
@@ -194,5 +239,12 @@ $( document ).ready(function() {
       lastX = mouseX;
       lastY = mouseY;
     }
+  });
+
+  $('.filterIMG').on("click", function(){
+    let action = $(this).data("target");
+    imageData = ctx.getImageData(0,0,$(canvas).width(),$(canvas).height());
+    filters[action](imageData);
+    ctx.putImageData(imageData,0,0)
   });
 });

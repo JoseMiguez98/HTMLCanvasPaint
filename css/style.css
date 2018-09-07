@@ -1,4 +1,5 @@
-body{
+html, body{
+  height:100%;
   background-color: rgb(0, 0, 0);
 }
 
@@ -24,7 +25,22 @@ canvas:hover{
   height: 10%;
   background-color: rgb(200,200,155);
 }
+.toolsBar img{
+  position: relative;
+  width: 50px;
+  height: 50px;
+  margin-right: 5%;
+  margin-left: 10%;
+  margin-top: 0.5%;
+}
 
+.toolsBar img:hover{
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 10%;
+  border-color: rgb(240,240,240);
+}
+/*
 .fileIcon, .toolIcon{
   position: relative;
   width: 50px;
@@ -39,7 +55,7 @@ canvas:hover{
   border-width: 1px;
   border-radius: 10%;
   border-color: rgb(240,240,240);
-}
+}*/
 
 .tools1{
   position: relative;
@@ -55,7 +71,41 @@ canvas:hover{
   display: inline-block;
 }
 
-/*#confirmDialog{
+.filterBox{
+  position: absolute;
+  width: 16%;
+  height: 80.6%;
   float:left;
-  margin-left: 60%;
-}*/
+}
+
+.filterTitle{
+  /*margin-right: 25%;
+  margin-top: 10%;*/
+  text-align: center;
+  color : inherit;
+  border-bottom: inherit;
+  width: 100%;
+  float: right;
+}
+
+.filter{
+  width: 41%;
+  height: 19%;
+  border: inherit;
+  display: inline-block;
+  margin: 2%;
+  margin-top: 10%;
+}
+
+.filter img{
+  width: 100%;
+  height: 100%;
+}
+
+.filter img:hover{
+  width: 100%;
+  height: 100%;
+  border-style: double;
+  border-width: 2%;
+  border-color: inherit;
+}
