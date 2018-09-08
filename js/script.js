@@ -61,6 +61,7 @@ $( document ).ready(function() {
   let tool_value = 0;
   let color = {r:0,g:0,b:0};
   let cursor = null;
+  let backupImage = new Image();
   //Almaceno las coordenadas de los cursores personalizados
   let coordinates = {
     "pencil" :{"x":-1, "y":27},
@@ -160,6 +161,7 @@ $( document ).ready(function() {
             //Creo un objeto imagen y la dibujo sobre el canvas
             let img = new Image();
             img.src = event.target.result;
+            backupImage.src = event.target.result;
             img.onload = function(){
               //Si el tamaño de la imagen es mayor al del canvas
               //La resizeo
@@ -201,7 +203,7 @@ $( document ).ready(function() {
     }
   });
 
-  //Función ejecutada al pasar el mouse sobre el canvas
+  //Función ejecutada al pasar el mouse sobre eimgl canvas
   $(canvas).hover(function(){
     $(this).css("cursor", cursor);
   });
@@ -259,5 +261,10 @@ $( document ).ready(function() {
     imageData = ctx.getImageData(0,0,$(canvas).width(),$(canvas).height());
     filters[action](imageData);
     ctx.putImageData(imageData,0,0)
+  });
+
+  //Restaura la imagen
+  $('#restoreButton').on("click",function() {
+    ctx.drawImage(backupImage,0,0,$(canvas).width(),canvas.height());
   });
 });
