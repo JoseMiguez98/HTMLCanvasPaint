@@ -109,3 +109,8 @@ canvas:hover{
   border-width: 2%;
   border-color: inherit;
 }
+
+#restoreButton{
+  margin-top: 70%;
+  margin-left: 8%;
+}
